@@ -4,18 +4,30 @@
 
 ## 下载
 
-**[点击这里打开最新版下载页面](https://github.com/Qiaozhang13/electricity-toolbox-windows/releases/latest)**
+**[最新版界面更新补丁](https://github.com/Qiaozhang13/electricity-toolbox-windows/releases/latest)** · **[首次使用的完整基础包](https://github.com/Qiaozhang13/electricity-toolbox-windows/releases/tag/v2026.10.20-report-v2377)**
 
-在页面下方 **Assets（附件）** 中下载 `electricity-toolbox-windows-report-v2377-20261020-public.zip`，内含 Python、Node、Chromium 及相关依赖。
+| 使用情况 | 应下载的附件 | 使用方式 |
+| --- | --- | --- |
+| 第一次安装 | 完整基础包 `electricity-toolbox-windows-report-v2377-20261020-public.zip` | 内含 Python、Node、Chromium；完整解压并按下方首次使用步骤初始化，再应用界面补丁 |
+| 已有对应公开基础包 | 界面补丁 `electricity-toolbox-windows-ui-patch-20261020-1.zip`，约21 KB | 完整解压到原工具箱根目录，按下方更新步骤执行；补丁不能单独启动 |
 
-GitHub 自动生成的 `Source code (zip)` 和 `Code → Download ZIP` 仅包含仓库说明，请下载 Release 附件。仓库公开，同伴无需加入仓库即可访问和下载。
+GitHub 自动生成的 `Source code (zip)` 和 `Code → Download ZIP` 仅包含仓库文档，请下载对应 Release 附件。仓库公开，同伴无需加入仓库即可访问和下载。
+
+## 已有工具箱如何更新界面
+
+1. 先退出工具箱并等待所有业务任务结束。
+2. 将补丁完整解压到原工具箱根目录，使 `13_更新工具箱界面.cmd` 与 `runtime`、`电力工具箱` 文件夹同层。
+3. 双击 `13_更新工具箱界面.cmd`，确认已关闭工具箱后输入 `Y` 并回车，再重新启动。
+4. 更新前的文件备份位于 `logs/ui-fix/日期时间/`；需要回退时按补丁说明恢复四份界面文件及原来存在的维护清单。
+
+补丁移除搜索栏/快捷键，并把“仅汇总、仅上传、汇总并上传”改成独立等宽选择按钮。工具箱版本仍为 `0.1.3`，日报仍为 `2.3.77`。安装器核对四份目标源码的版本哈希；不匹配的自定义版本会被拒绝，同一补丁可重复安装。Windows 原生双击及实际界面仍需目标电脑验收。
 
 ## 更新与维护
 
 - [查看更新日志](CHANGELOG.md)：按版本查看功能、逻辑、修复及验证范围。
 - [功能逻辑迭代记录与发布方法](ITERATION_GUIDE.md)：包含可复制模板、日期与字段契约、验收和回退记录。
 
-日志中区分未发布需求、内部修订与正式发布。当前完整包继续沿用已发布版本；后续程序更新将使用新的发布标签和附件。
+日志中区分未发布需求、内部修订与正式发布。当前提供完整基础包与增量界面补丁两个入口；每次更新均保留独立发布标签和旧版下载。
 
 ## 首次使用
 
