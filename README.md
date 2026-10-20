@@ -2,16 +2,45 @@
 
 电力工具箱 Windows 版，包含日报 V2.3.77 更新与 Windows 兼容修复。适用于 Windows 10 22H2 / Windows 11 的 Intel、AMD 64 位电脑。
 
+
+> **在线更新候选版待 Windows 实机验收。** [候选下载与说明](https://github.com/Qiaozhang13/electricity-toolbox-windows/releases/tag/v2026.10.20-online-update-rc1)。候选不替换 Latest 稳定发布，稳定在线更新频道暂未启用；“检查更新”可能提示更新服务暂不可用。
+
 ## 下载
 
 **[最新版界面更新补丁](https://github.com/Qiaozhang13/electricity-toolbox-windows/releases/latest)** · **[首次使用的完整基础包](https://github.com/Qiaozhang13/electricity-toolbox-windows/releases/tag/v2026.10.20-report-v2377)**
 
 | 使用情况 | 应下载的附件 | 使用方式 |
 | --- | --- | --- |
-| 第一次安装 | 完整基础包 `electricity-toolbox-windows-report-v2377-20261020-public.zip` | 内含 Python、Node、Chromium；完整解压并按下方首次使用步骤初始化，再应用界面补丁 |
+| 第一次使用现有发布版 | 完整基础包 `electricity-toolbox-windows-report-v2377-20261020-public.zip` | 内含 Python、Node、Chromium；完整解压并按下方首次使用步骤初始化，再应用界面补丁 |
+| 测试在线更新候选 | 上述完整基础包 + 候选的 `windows-online-update-enable.zip` | 初始化完整包后按下方候选步骤运行 14 脚本，无需再安装旧界面补丁；已有对应公开版只需启用 ZIP |
 | 已有对应公开基础包 | 界面补丁 `electricity-toolbox-windows-ui-patch-20261020-1.zip`，约21 KB | 完整解压到原工具箱根目录，按下方更新步骤执行；补丁不能单独启动 |
 
 GitHub 自动生成的 `Source code (zip)` 和 `Code → Download ZIP` 仅包含仓库文档，请下载对应 Release 附件。仓库公开，同伴无需加入仓库即可访问和下载。
+
+## 一次性启用在线更新（候选测试）
+
+首次使用先下载并完整解压上面的完整基础包，按“首次使用”完成初始化。已有对应公开基础版或界面补丁版，可从[候选发布](https://github.com/Qiaozhang13/electricity-toolbox-windows/releases/tag/v2026.10.20-online-update-rc1)下载 `windows-online-update-enable.zip`：
+
+1. 关闭安装目录内的所有工具箱窗口，并等待任务结束。
+2. 将启用 ZIP 完整解压到原工具箱根目录，使 `14_启用在线更新.cmd` 与 `runtime` 文件夹同层。启用包不能单独运行。
+3. 双击 `14_启用在线更新.cmd`，按提示完成后，用原 EXE 或 `02_启动工具箱调试版.cmd` 启动。
+
+启用未完成时，保留启用包及 `logs/updates/` 备份，关闭工具箱后再次运行同一 14 脚本。此流程只接受对应公开版本；自定义程序文件不匹配时会拒绝。候选已合并现有界面改动，无需再运行旧界面补丁。
+
+稳定频道验收并启用后，可在软件内点击“检查更新”、阅读更新说明、确认下载，程序随后备份替换并重启；下载期间可取消。账号、配置、工作簿和历史输出保留在本地。Python 等运行环境、启动器及恢复核心变化使用完整迁移包。在线源码 ZIP 由程序安装，不要直接手工覆盖。
+
+当前应用仍为 `0.1.3`，日报仍为 `2.3.77`；首次在线修订为 `online-bootstrap-20261020-1`、序号 `1`。验证范围与待验项目见候选发布和[更新日志](CHANGELOG.md)。
+
+### 候选附件与升级范围
+
+- `windows-online-update-enable.zip`：一次性启用包；完整解压后运行 `14_启用在线更新.cmd`。首次安装还需要上面的完整基础包，启用包本身没有 Python、Node 或 Chromium 运行环境。
+- `windows-online-update-enable-checksums.json`、`windows-online-update-public-trust.json`：启用包的校验与公开信任信息。
+- `windows-update-v2026.10.20-online-update-rc1.zip`、`windows-update.json`、`windows-update.json.sig`、`windows-update-sha256.json`：固定候选标签的在线索引、签名及源码载荷，只供更新器读取。当前索引描述已安装的序号1，不会产生重复安装。
+- `SHA256SUMS.txt`：对应本次候选公开附件的 SHA256；先比对文件名与摘要，再使用启用包。
+
+本候选采用“完整基础包 + 一次性启用包”，没有另外提供已经完成 Windows 验收的完整迁移包。后续若 Python、Node、Chromium、依赖、原生启动器、恢复核心或公钥改变，需要单独审核完整迁移包；软件内更新只处理适用的源码、随包页面模板和静态资源。
+
+Windows 10 22H2 x64 与 Windows 11 x64 原生验收均为 `not_run`：当前缺少目标 Windows 电脑。Mac 上的签名、来源文件及隔离安装回读不能替代实际双击、锁、重启或回滚验收。稳定 Latest 仍为界面补丁版，缺少稳定在线索引；候选按钮可见并不代表稳定更新已经可下载。
 
 ## 已有工具箱如何更新界面
 
@@ -27,7 +56,7 @@ GitHub 自动生成的 `Source code (zip)` 和 `Code → Download ZIP` 仅包含
 - [查看更新日志](CHANGELOG.md)：按版本查看功能、逻辑、修复及验证范围。
 - [功能逻辑迭代记录与发布方法](ITERATION_GUIDE.md)：包含可复制模板、日期与字段契约、验收和回退记录。
 
-日志中区分未发布需求、内部修订与正式发布。当前提供完整基础包与增量界面补丁两个入口；每次更新均保留独立发布标签和旧版下载。
+日志中区分未发布需求、内部修订与正式发布。当前保留完整基础包、界面补丁，并新增在线更新候选入口；每次更新均保留独立发布标签和旧版下载。
 
 ## 首次使用
 
