@@ -1,87 +1,27 @@
-# 电力工具箱 Windows 共享下载
+# 电力工具箱 Windows
 
-电力工具箱 Windows 版，包含日报 V2.3.77 更新与 Windows 兼容修复。适用于 Windows 10 22H2 / Windows 11 的 Intel、AMD 64 位电脑。
+当前初始版：**2026-10-21 Windows 实测完整包**。应用 0.1.3，日报 V2.3.77。本次将用户在 Windows 上测试可运行的版本设为后续维护基线。
 
+[下载当前完整包](https://github.com/Qiaozhang13/electricity-toolbox-windows/releases/download/v2026.10.21-initial/electricity-toolbox-windows-initial-20261021.zip) · [发布页与校验文件](https://github.com/Qiaozhang13/electricity-toolbox-windows/releases/tag/v2026.10.21-initial) · [更新日志](CHANGELOG.md) · [功能迭代方法](ITERATION_GUIDE.md)
 
-> **在线更新候选版待 Windows 实机验收。** [候选下载与说明](https://github.com/Qiaozhang13/electricity-toolbox-windows/releases/tag/v2026.10.20-online-update-rc1)。候选不替换 Latest 稳定发布，稳定在线更新频道暂未启用；“检查更新”可能提示更新服务暂不可用。
+## 下载与启动
 
-## 下载
+完整解压 ZIP 到 Windows 10/11 x64 可写目录，打开 `电力工具箱_Windows_x64_测试版_20261021`，双击 `电力工具箱.exe`。保留整个目录，不要只复制 EXE 或在压缩包中运行。建议预留至少 2 GB 空间。
 
-**[最新版界面更新补丁](https://github.com/Qiaozhang13/electricity-toolbox-windows/releases/latest)** · **[首次使用的完整基础包](https://github.com/Qiaozhang13/electricity-toolbox-windows/releases/tag/v2026.10.20-report-v2377)**
+启动异常时，阅读包内 `先读我_Windows维护测试说明.md`，使用 00 校验、01 初始化、02 调试启动和 03 环境诊断入口。详细说明见同页 `USAGE.md`；可用 `SHA256SUMS.txt` 校验下载文件。
 
-| 使用情况 | 应下载的附件 | 使用方式 |
-| --- | --- | --- |
-| 第一次使用现有发布版 | 完整基础包 `electricity-toolbox-windows-report-v2377-20261020-public.zip` | 内含 Python、Node、Chromium；完整解压并按下方首次使用步骤初始化，再应用界面补丁 |
-| 测试在线更新候选 | 上述完整基础包 + 候选的 `windows-online-update-enable.zip` | 初始化完整包后按下方候选步骤运行 14 脚本，无需再安装旧界面补丁；已有对应公开版只需启用 ZIP |
-| 已有对应公开基础包 | 界面补丁 `electricity-toolbox-windows-ui-patch-20261020-1.zip`，约21 KB | 完整解压到原工具箱根目录，按下方更新步骤执行；补丁不能单独启动 |
+GitHub 的 `Source code (zip)` / `Source code (tar.gz)` 仅含本仓库说明，运行软件需下载上述完整包。
 
-GitHub 自动生成的 `Source code (zip)` 和 `Code → Download ZIP` 仅包含仓库文档，请下载对应 Release 附件。仓库公开，同伴无需加入仓库即可访问和下载。
+## 使用条件
 
-## 一次性启用在线更新（候选测试）
+公开包不含本机账号密码、Cookie、登录态、业务工作簿、采集结果和本地厂站配置。请使用自己的账号及授权单位/机组参数；风力预测按 `config.example.json` 配置。日报 Word 模板及 500kV 底图、拓扑、节点位置材料需自备，缺少材料时相应功能不能完整运行。详见包内 `清洁分享说明.txt`。
 
-首次使用先下载并完整解压上面的完整基础包，按“首次使用”完成初始化。已有对应公开基础版或界面补丁版，可从[候选发布](https://github.com/Qiaozhang13/electricity-toolbox-windows/releases/tag/v2026.10.20-online-update-rc1)下载 `windows-online-update-enable.zip`：
-
-1. 关闭安装目录内的所有工具箱窗口，并等待任务结束。
-2. 将启用 ZIP 完整解压到原工具箱根目录，使 `14_启用在线更新.cmd` 与 `runtime` 文件夹同层。启用包不能单独运行。
-3. 双击 `14_启用在线更新.cmd`，按提示完成后，用原 EXE 或 `02_启动工具箱调试版.cmd` 启动。
-
-启用未完成时，保留启用包及 `logs/updates/` 备份，关闭工具箱后再次运行同一 14 脚本。此流程只接受对应公开版本；自定义程序文件不匹配时会拒绝。候选已合并现有界面改动，无需再运行旧界面补丁。
-
-稳定频道验收并启用后，可在软件内点击“检查更新”、阅读更新说明、确认下载，程序随后备份替换并重启；下载期间可取消。账号、配置、工作簿和历史输出保留在本地。Python 等运行环境、启动器及恢复核心变化使用完整迁移包。在线源码 ZIP 由程序安装，不要直接手工覆盖。
-
-当前应用仍为 `0.1.3`，日报仍为 `2.3.77`；首次在线修订为 `online-bootstrap-20261020-1`、序号 `1`。验证范围与待验项目见候选发布和[更新日志](CHANGELOG.md)。
-
-### 候选附件与升级范围
-
-- `windows-online-update-enable.zip`：一次性启用包；完整解压后运行 `14_启用在线更新.cmd`。首次安装还需要上面的完整基础包，启用包本身没有 Python、Node 或 Chromium 运行环境。
-- `windows-online-update-enable-checksums.json`、`windows-online-update-public-trust.json`：启用包的校验与公开信任信息。
-- `windows-update-v2026.10.20-online-update-rc1.zip`、`windows-update.json`、`windows-update.json.sig`、`windows-update-sha256.json`：固定候选标签的在线索引、签名及源码载荷，只供更新器读取。当前索引描述已安装的序号1，不会产生重复安装。
-- `SHA256SUMS.txt`：对应本次候选公开附件的 SHA256；先比对文件名与摘要，再使用启用包。
-
-本候选采用“完整基础包 + 一次性启用包”，没有另外提供已经完成 Windows 验收的完整迁移包。后续若 Python、Node、Chromium、依赖、原生启动器、恢复核心或公钥改变，需要单独审核完整迁移包；软件内更新只处理适用的源码、随包页面模板和静态资源。
-
-Windows 10 22H2 x64 与 Windows 11 x64 原生验收均为 `not_run`：当前缺少目标 Windows 电脑。Mac 上的签名、来源文件及隔离安装回读不能替代实际双击、锁、重启或回滚验收。稳定 Latest 仍为界面补丁版，缺少稳定在线索引；候选按钮可见并不代表稳定更新已经可下载。
-
-## 已有工具箱如何更新界面
-
-1. 先退出工具箱并等待所有业务任务结束。
-2. 将补丁完整解压到原工具箱根目录，使 `13_更新工具箱界面.cmd` 与 `runtime`、`电力工具箱` 文件夹同层。
-3. 双击 `13_更新工具箱界面.cmd`，确认已关闭工具箱后输入 `Y` 并回车，再重新启动。
-4. 更新前的文件备份位于 `logs/ui-fix/日期时间/`；需要回退时按补丁说明恢复四份界面文件及原来存在的维护清单。
-
-补丁移除搜索栏/快捷键，并把“仅汇总、仅上传、汇总并上传”改成独立等宽选择按钮。工具箱版本仍为 `0.1.3`，日报仍为 `2.3.77`。安装器核对四份目标源码的版本哈希；不匹配的自定义版本会被拒绝，同一补丁可重复安装。Windows 原生双击及实际界面仍需目标电脑验收。
+用户已反馈本版在 Windows 可运行；全部真实业务上传、写入及各系统版本的完整验收仍需按所用功能验证。业务写入先使用副本。
 
 ## 更新与维护
 
-- [查看更新日志](CHANGELOG.md)：按版本查看功能、逻辑、修复及验证范围。
-- [功能逻辑迭代记录与发布方法](ITERATION_GUIDE.md)：包含可复制模板、日期与字段契约、验收和回退记录。
+本次初始版为独立完整包，使用手动下载解压。软件内自动发现、下载、安装更新尚未接入，后续以此版本为基线开发和验收。
 
-日志中区分未发布需求、内部修订与正式发布。当前保留完整基础包、界面补丁，并新增在线更新候选入口；每次更新均保留独立发布标签和旧版下载。
+请保留旧目录备份，按模块核对配置和数据迁移。不要将历史界面补丁或在线更新启用包覆盖到本版。压缩包与用户实测原件字节一致，仅发布附件外部文件名调整，内部“测试版”目录名和应用版本号保持原样。
 
-## 首次使用
-
-1. 完整解压到本地可写目录，例如 `D:\Toolbox`，预留至少 2 GB 空间，不要在压缩包内运行。
-2. 先读 `清洁分享说明.txt` 和 `先读我_Windows维护测试说明.md`。
-3. 运行 `00_校验维护包.cmd`，核对文件完整性。
-4. 运行 `01_初始化维护环境.cmd`，再运行 `02_启动工具箱调试版.cmd`。
-5. 环境诊断用 `03_环境诊断.cmd`，维护回归用 `04_运行维护回归测试.cmd`。
-
-保留完整目录结构和 `runtime`，不要只移动 EXE。真实取数、WPS 写入和上传需使用自己的账号、业务文件及网络环境。
-
-## 公开分享包的材料范围
-
-公开包保留业务代码及运行环境，移除了含真实经营数据的 Word 模板、原电网接线图和相关拓扑材料，并清理示例组织标识及本机路径信息。
-
-- 生成每日生产经营情况汇报时，需要自行选择有权使用、结构兼容的 Word 模板或前一日报告。
-- 500kV 拓扑和地图功能需自行提供有权使用的接线图、拓扑及节点位置文件，位置见包内 `清洁分享说明.txt`。
-- 各工具首次取数或上传需重新配置并登录，请保管好 `development\data` 内的账号、登录状态和业务资料。
-
-日报 V2.3.77 支持日前、实时各三项当前值手动输入：已填值优先，留空从网站读取；切换日期清空手填值。
-
-## 校验与反馈
-
-发布页同时提供 `SHA256SUMS.txt`，可用 PowerShell 的 `Get-FileHash` 计算下载文件 SHA256 并比对。
-
-本次发布检查包括 ZIP 完整性、清理后的清单哈希及运行时保留范围。Windows 10/11 的真实账号取数、上传和本机安装环境仍需在目标电脑验证。
-
-问题可通过本仓库 [Issues](https://github.com/Qiaozhang13/electricity-toolbox-windows/issues) 反馈，提交日志和截图前请移除账号、Cookie 和真实经营数据。
+新发布记录从本初始版重新开始，功能、逻辑和验证范围统一维护在 [CHANGELOG.md](CHANGELOG.md)。
